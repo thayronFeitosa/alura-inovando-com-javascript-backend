@@ -17,27 +17,16 @@ module.exports = (app) =>{
     
     app.get('/livros',function(req, resp){
 
-        const livrodao = new LivoDao(db)
-
-        livrodao.lista(function(erro, resultado){
-
-                    resp.marko(
-                        require('./../views/livros/lista/lista.marko'),
-                        {
-                            livros: resultado
-                        }
-                    );
-                });
-
-
-           /* db.all('SELECT * FROM livros',function(erro, resultado){
-
-                resp.marko(
-                    require('./../views/livros/lista/lista.marko'),
-                    {
-                        livros: resultado
-                    }
-                );
-            });*/
+        const livrodao = new LivoDao(db);
+        
+        livrodao.lista()
+        .then(livros => resp.marko(
+            require('./../views/livros/lista/lista.marko'),
+            
+            {
+                livros: livros
+            }
+        ))
+        .catch(erro => console.log(erro))
     });
 }
