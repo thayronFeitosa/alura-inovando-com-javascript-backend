@@ -11,9 +11,9 @@
                 <td>Título</td>
             </tr>
 
-             <tr>
-                <td>1</td>
-                <td>Fundamentos do node</td>
+             <tr for (livros in data.livros)>
+                <td>${livros.id}</td>
+                <td>${livros.titulo}</td>
             </tr>
         </table>
     

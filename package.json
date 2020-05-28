@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/thayronFeitosa/alura-inovando-com-javascript-backend#readme",
   "dependencies": {
-    "express": "4.16.3",
-    "marko": "4.13.4-1"
+    "express": "^4.16.4",
+    "marko": "4.13.4-1",
+    "sqlite3": "^4.2.0"
   },
   "devDependencies": {
     "nodemon": "1.18.4"
