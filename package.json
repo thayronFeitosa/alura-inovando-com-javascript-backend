@@ -1,0 +1,23 @@
+{
+  "name": "casadocodigo",
+  "version": "1.0.0",
+  "description": "livraria casa do codigo",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thayronFeitosa/alura-inovando-com-javascript-backend.git"
+  },
+  "author": "thayronFeitosa",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thayronFeitosa/alura-inovando-com-javascript-backend/issues"
+  },
+  "homepage": "https://github.com/thayronFeitosa/alura-inovando-com-javascript-backend#readme",
+  "dependencies": {
+    "express": "4.16.3"
+  }
+}
