@@ -19,5 +19,8 @@
   "homepage": "https://github.com/thayronFeitosa/alura-inovando-com-javascript-backend#readme",
   "dependencies": {
     "express": "4.16.3"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
   }
 }
