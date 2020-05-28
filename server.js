@@ -1,35 +1,12 @@
 const app = require('./src/config/custom-express');
 
 
-app.listen(3030, function(){
-    console.log('Servidor rodando na porta');
+var porta = 3031;
+app.listen(porta, function(){
+    console.log(`Servidor rodando na porta: ${porta}`);
 });
 
-app.get('/',function(req, resp){
-    resp.send(`
-        <html>
-            <head>
-                <meta charset="UTF-8">
-            </head>
-            <body>
-                <h1>Casa do codigo </h1>
-            
-            </body>
-        </html>`)
-});
 
-app.get('/livros',function(req, resp){
-    resp.send(`
-        <html>
-            <head>
-                <meta charset="UTF-8">
-            </head>
-            <body>
-                <h1>Listagem de liros</h1>
-            
-            </body>
-        </html>`)
-});
 
 
 
