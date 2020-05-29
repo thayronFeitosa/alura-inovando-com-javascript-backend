@@ -17,7 +17,7 @@
    </p>
    <ul> 
     <li>npm install -i sqlite3</li>
-    <li>echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -pgit</li>
+    <li>echo fs.inotify.max_user_watches=582222 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p</li>
    </ul>
 
 </body>
