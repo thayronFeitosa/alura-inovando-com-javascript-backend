@@ -1,20 +1,12 @@
+const {check, validationResult } = require('express-validator/check');
 const LivroDao = require('../infra/livro-dao');
 const db = require('../../config/database');
 
 module.exports = (app) => {
     app.get('/', function(req, resp) {
-        resp.send(
-            `
-                <html>
-                    <head>
-                        <meta charset="utf-8">
-                    </head>
-                    <body>
-                        <h1> Casa do Código </h1>
-                    </body>
-                </html>
-            `
-        );
+        resp.marko(
+            require('../views/base/home/home.marko')
+        )
     });
     
     app.get('/livros', function(req, resp) {
@@ -48,10 +40,29 @@ module.exports = (app) => {
                 .catch(erro => console.log(erro));
     });
 
-    app.post('/livros', function(req, resp) {
+    app.post('/livros',
+    [
+        check('titulo').isLength({min: 5}).withMessage('O título precisa conter no mínimo 5 caracters'),
+        check('preco').isCurrency().withMessage('O preço precisa ter um valor monetário valido!')
+    ], 
+    function(req, resp) {
         console.log(req.body);
         const livroDao = new LivroDao(db);
-        
+
+        const erros = validationResult(req);
+        if(!erros.isEmpty()){
+            return resp.marko(
+                require('../views/livros/form/form.marko'),
+                {
+                    livro:{},
+                    errosValidacao: erros.array()
+                
+                }
+            );
+        }
+
+
+
         livroDao.adiciona(req.body)
                 .then(resp.redirect('/livros'))
                 .catch(erro => console.log(erro));
@@ -74,4 +85,16 @@ module.exports = (app) => {
                 .then(() => resp.status(200).end())
                 .catch(erro => console.log(erro));
     });
+
+    app.use(function (req, resp, next){
+        return resp.status(404).marko(
+            require('../views/base/erros/404.marko')
+        )
+    });
+
+    app.use(function (erro ,req, resp, next){
+        return resp.status(500).marko(
+            require('../views/base/erros/500.marko')
+        )
+    })
 };
